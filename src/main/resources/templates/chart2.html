@@ -4,6 +4,7 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Spring Boot Thymeleaf</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
   .ui-tabs-anchor {
@@ -74,6 +75,8 @@ $("#tabs").tabs({
 </script>
 </head>
 <body>
+<div th:replace="fragments/header :: header">...</div>
+<div class="text-center alert-success">selctioner une zonne pour zommer</div>
 <div id="tabs" style="height: 360px">
 <ul>
 <li ><a href="#tabs-1" style="font-size: 12px">Spline</a></li>

@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,7 +34,9 @@ public class UserServiceImpl implements UserService{
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole(user.getEmployee().getJob().getJobId());
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        List<Role> l= new ArrayList<>();
+        l.add(userRole);
+        user.setRoles(l);
 		userRepository.save(user);
 	}
 

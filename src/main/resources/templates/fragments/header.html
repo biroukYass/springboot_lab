@@ -1,5 +1,9 @@
 <div th:fragment="header" class="navbar navbar-default " xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
     	<a href="#" class="navbar-brand" >my site</a>
+    	<form class="text-right" th:action="@{/logout}" method="get">
+			<button class="btn 	 btn-danger " name="registration"
+				type="Submit">Logout</button>
+		</form>
     </div>
 </div>

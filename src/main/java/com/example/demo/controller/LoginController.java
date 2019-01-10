@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -66,7 +68,9 @@ public class LoginController {
 //			System.out.println(employee.getEmail());
 			user.setEmployee(employee);
 			Role role = roleService.findByrole(employee.getJob().getJobId());
-			user.setRoles(new HashSet<Role>(Arrays.asList(role)));
+			List l= new ArrayList<Role>();
+			l.add(role);
+			user.setRoles(l);
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
@@ -84,6 +88,18 @@ public class LoginController {
 		modelAndView.addObject("userName", "Welcome " + user.getEmployee().getFirstName() + " " + user.getEmployee().getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/welcome", method = RequestMethod.GET)
+	public ModelAndView welcome(){
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("userName", "Welcome " + user.getEmployee().getFirstName() + " " + user.getEmployee().getLastName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("role", user.getRoles().get(0) );
+		modelAndView.addObject("Message","Content Available Only for Users with "+user.getRoles().get(0).getRole()+" Role");
+		modelAndView.setViewName("welcome");
 		return modelAndView;
 	}
 	

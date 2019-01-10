@@ -10,5 +10,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long > {
 
 	  List<Employee> findByFirstNameOrderByLastNameAsc(String firstName);
 	  Employee findByEmail(String email);
+	  Employee findByEmployeeId(long employeeId);
 
 }

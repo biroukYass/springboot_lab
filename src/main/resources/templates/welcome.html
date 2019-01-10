@@ -1,20 +1,54 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Products</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
-    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+<head>
+<title>welcome Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div class="container">
-    <div class="page-header" id="banner">
-	    <div class="alert alert-success">
-	        <strong>Success!</strong> It is working as we expected.
-	    </div>
-		<h2>welcome page </h2>
-    </div>
-    <div th:replace="fragments/footer :: footer">...</div>
-</div>
+<div th:replace="fragments/header :: header">...</div>
+
+	<div class="container"> 
+		
+		<div class="panel-group" style="margin-top:40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span th:utext="${userName}"></span>
+					
+				</div><br>
+				<div  th:if="${role.role == 'FI_MGR'}">
+						<a class="btn  btn-danger " th:href="@{/countries}" >go to countries</a>
+						<a class="btn   btn-danger 	" th:href="@{/employees}" >go to employees</a>						
+						<a class="btn  btn-default " th:href="@{/chart}" >go to graph salaries</a>
+					</div>
+					<div  th:if="${role.role == 'AD_PRES'}">
+						<a class="btn   btn-danger 	" th:href="@{/countries}" >go to countries</a>
+						<a class="btn   btn-danger 	" th:href="@{/employees}" >go to employees</a>												
+						<a class="btn    btn-danger " th:href="@{/chart}" >go employee graph salaries</a>
+						<a class="btn    btn-danger " th:href="@{/deciles}" >go to deciles</a>
+					</div>
+					<div  th:if="${role.role == 'AC_MGR'}">
+						<a class="btn   btn-danger 	" th:href="@{/countries}" >go to countries</a>
+						<a class="btn   btn-danger 	" th:href="@{/employees}" >go to employees</a>						
+						<a class="btn    btn-danger " th:href="@{/chart}" >go employee graph salaries</a>
+						<a class="btn    btn-danger " th:href="@{/deciles}" >go to deciles</a>
+					</div>
+					<div  th:if="${role.role == 'SA_MAN'}">
+						<a class="btn   btn-danger 	" th:href="@{/countries}" >go to countries</a>
+						<a class="btn   btn-danger 	" th:href="@{/employees}" >go to employees</a>						
+						<a class="btn    btn-danger " th:href="@{/chart}" >go employee graph salaries</a>
+						<a class="btn    btn-danger " th:href="@{/deciles}" >go to deciles</a>
+					</div>
+					<br>
+				<p class="admin-message-text text-center" th:utext="${Message}"></p><br>
+			</div>
+		</div>
+		
+	</div>
 </body>
 </html>

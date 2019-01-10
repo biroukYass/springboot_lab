@@ -5,12 +5,14 @@
 <head>
 <title>Spring Boot Thymeleaf</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script type="text/javascript" th:inline="javascript">
 
 var data_deciles = []
 var theList= [[${data_decile}]]
 for (i = 0; i < theList.length; i++) {
-   	 xValue = i;
+   	 xValue =theList[i]["maxSalary"] ;
 		yValue = theList[i]["percentage"];
 		data_deciles.push({
 			label : xValue,
@@ -27,13 +29,13 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		text: "Top Oil Reserves"
 	},
 	axisY: {
-		title: "Reserves(MMbbl)"
+		title: "%"
 	},
 	data: [{        
 		type: "column",  
 		showInLegend: true, 
 		legendMarkerColor: "grey",
-		legendText: "MMbbl = one million barrels",
+		legendText: "percentage per decile",
 		dataPoints: data_deciles
 	}]
 });
@@ -43,6 +45,8 @@ chart.render();
 </script>
 </head>
 <body>
+<div th:replace="fragments/header :: header">...</div>
+
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
