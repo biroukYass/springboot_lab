@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,9 +59,10 @@ public class mainController {
 	}
 	
 	@RequestMapping(value = "/modifyCountry")
-	public void modifyCountry(Model model,@RequestBody modifyCountryQuery q ){
-		countryService.updateCountry(q.getCountryId(), q.getCountryName());
+	public String modifyCountry( @RequestBody modifyCountryQuery q ){
+		countryService.updateCountry(q);
 		System.out.println(q.getCountryId());
+		return "/chart";
 	}
 
 	@RequestMapping(value = "/updateJob", method = RequestMethod.POST)

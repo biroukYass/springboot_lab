@@ -9,5 +9,6 @@ import com.example.demo.model.Employee;
 public interface EmployeeRepository extends CrudRepository<Employee, Long > {
 
 	  List<Employee> findByFirstNameOrderByLastNameAsc(String firstName);
+	  Employee findByEmail(String email);
 
 }

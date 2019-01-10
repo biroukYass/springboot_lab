@@ -64,4 +64,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return deciles;
 	}
 
+	@Override
+	public Employee findByEmail(String email) {
+		
+		return employeeRepository.findByEmail( email);
+	}
+
 }

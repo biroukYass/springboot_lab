@@ -4,6 +4,8 @@ public class modifyCountryQuery {
 
 	String countryId;
 	String countryName;
+	String countryIdOld;
+	String regionName;
 	public modifyCountryQuery(String countryId, String countryName) {
 		super();
 		this.countryId = countryId;
@@ -11,6 +13,13 @@ public class modifyCountryQuery {
 	}
 	public modifyCountryQuery() {
 		super();
+	}
+	
+	public String getCountryIdOld() {
+		return countryIdOld;
+	}
+	public void setCountryIdOld(String countryIdOld) {
+		this.countryIdOld = countryIdOld;
 	}
 	public String getCountryId() {
 		return countryId;
@@ -24,6 +33,20 @@ public class modifyCountryQuery {
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
+	public String getRegionName() {
+		return regionName;
+	}
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+	public modifyCountryQuery(String countryId, String countryName, String countryIdOld, String regionName) {
+		super();
+		this.countryId = countryId;
+		this.countryName = countryName;
+		this.countryIdOld = countryIdOld;
+		this.regionName = regionName;
+	}
+	
 	
 	
 }

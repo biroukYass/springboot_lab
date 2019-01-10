@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.controller.queries.modifyCountryQuery;
 import com.example.demo.model.Country;
 import com.example.demo.repository.CountryRepository;
 
@@ -20,10 +21,10 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	@Override
-	public void updateCountry(String countryId, String countryName) {
-		Country c= new Country();
-		c.setCountryId(countryId);
-		c.setCountryName(countryName);
+	public void updateCountry(modifyCountryQuery q ) {
+		Country c= countryRepository.findByCountryId(q.getCountryIdOld());
+		c.setCountryId(q.getCountryId());
+		c.setCountryName(q.getCountryName());
 		countryRepository.save(c);
 	}
 	

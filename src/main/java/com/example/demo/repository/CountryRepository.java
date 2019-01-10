@@ -7,5 +7,5 @@ import com.example.demo.model.Country;
 
 @RepositoryRestResource(collectionResourceRel = "country", path = "country")
 public interface CountryRepository extends PagingAndSortingRepository<Country, String> {
-
+	Country findByCountryId(String countryId);
 }

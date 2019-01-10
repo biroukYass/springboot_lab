@@ -6,7 +6,7 @@
     
     <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" media="screen"/>
     <script th:src="@{webjars/jquery/3.3.1/jquery.min.js}"></script>
-    <script th:src="@{//https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}">...</script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}">...</script>
 </head>
 <body>
 <div th:replace="fragments/header :: header">...</div>
@@ -47,11 +47,11 @@
         <p>Query: <input width="50%" type="text" name="sqlQuery" id="sqlQuery" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-        <form id="register">
-			<input type="text" name="countryId" id="country_id"  value=""  placeholder="Country Id"> 
-			<input type="text" name="countryId_old" id="country_id_old"  value=""  hidden="true"> 
-			<input type="text" name="countryName" id="country_name" value="" placeholder="Country Name"> 
-			<input type="text" name="regionName" id="region_name" value="" placeholder="Region Name"> 
+        <form id="register" th:object="${modifyCountryQuery}">
+			<input  name="countryId" id="country_id" disabled="true"   placeholder="Country Id"> 
+			<input type="text" name="countryIdOld" id="country_id_old"   hidden="true"> 
+			<input type="text" name="countryName" id="country_name"  placeholder="Country Name"> 
+			<input type="text" name="regionName" id="region_name"  placeholder="Region Name"> 
 			<input type="submit" name="valider" value="Modify"> 
 		</form>
 		<br><br><br><br>
@@ -62,24 +62,40 @@
 <script th:inline="javascript">
 /*<![CDATA[*/
 $(document).ready(function(){
-			
                         $('.btn').on('click',function(){
                                 $("#country_id").val($(this).closest('tr').find("td:eq(0)").text());
                                 $("#country_id_old").val($(this).closest('tr').find("td:eq(0)").text());
                                 $("#country_name").val($(this).closest('tr').find("td:eq(1)").text());
                                 $("#region_name").val($(this).closest('tr').find("td:eq(2)").text());
-
+                                /* var q = new Object();
+                                q.countryId = $("#country_id").val();
+                                q.countryIdOld = $("#country_id_old").val();
+                                q.countryName = $("#country_name").val();
+                                q.regionName = $("#region_name").val();
+                                 */
+                                 
+                              /*  JSON.stringify(q);
+                               JSON.parse(q); */
                                 });
+                        
                         $('#register').submit(function(e) {
-                                    var form = $(this);
+                                    var form = $("#register");
                                     $.ajax({
                                           type: 'POST',
                                           url: "/modifyCountry",
-                                          data: form.serialize(),
+                                          dataType: "json",
                                           contentType: 'application/json',
-                                          success: function(modRes)
+                                          data:JSON.stringify( {
+
+                                              "countryId": $("#country_id").val(),
+                                              "countryName" : $("#country_name").val(),
+                                              "countryIdOld" : $("#country_id_old").val(),
+                                              "regionName"  :  $("#region_name").val()
+                                          }),
+                                          
+                                          success: function()
                                            {
-                                                alert(modRes);
+                                                alert("done");
                                            }
                                        });
 

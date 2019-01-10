@@ -10,5 +10,6 @@ public interface EmployeeService {
 	public List<Employee> filterByFirstName(String firstName);
 	public List<Employee> findAll();
 	public List<Decile> decileEmployees();
+	public Employee findByEmail(String email);
 	
 }
