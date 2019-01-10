@@ -39,11 +39,16 @@
 			</td>          
 	        </tr>
         </table>
-        <div class="row" th:if="${role.role != 'SA_MAN'}">
-        <form id="register" th:object="${modifyCountryQuery}">
-			<input  name="employeeId" id="employeeId" disabled   placeholder="Employee Id"> 
-			<input type="text" name="firstName" id="firstName"  placeholder="First Name" > 
+        <div  th:if="${role.role != 'SA_MAN'}">
+        <div class="alert-danger text-center">Update your selected employee here :</div><br>
+        <form class="row " id="register" th:object="${modifyCountryQuery}">
+        	<label for="employeeId">ID :</label>
+			<input class=" col-md-2 "  name="employeeId" id="employeeId" disabled   placeholder="Employee Id">
+			<label for="firstName">first name :</label>
+			<input class=" " type="text" name="firstName" id="firstName"  placeholder="First Name" >
+			<label for="lastName">last name :</label>
 			<input type="text" name="lastName" id="lastName"  placeholder="Last Name"> 
+			<label for="salary">salary :</label>
 			<input type="text" name="salary" id="salary"  placeholder="salary">
 			<input type="submit" name="valider" value="Modify">
 		</form>
@@ -79,10 +84,7 @@ $(document).ready(function(){
                                               "lastName" : $("#lastName").val(),
                                               "salary"  :  $("#salary").val()
                                           }),
-                                          error: function()
-                                          {
-                                              alert("error");
-                                         },
+                                          
                                        success: function()
                                            {
                                                 alert("done");

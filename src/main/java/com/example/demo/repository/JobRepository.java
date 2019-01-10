@@ -10,5 +10,5 @@ import com.example.demo.model.Job;
 public interface JobRepository extends CrudRepository<Job, String>{
 
 	Job findByJobId(String JobId);
-	List<Job> findByMaxSalaryLessThanEqual(BigDecimal maxSalary);
+	List<Job> findByMaxSalaryGreaterThanEqualOrderByMaxSalary(BigDecimal maxSalary);
 }

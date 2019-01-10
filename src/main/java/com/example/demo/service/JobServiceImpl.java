@@ -26,8 +26,8 @@ public class JobServiceImpl implements JobService {
 		job.setJobTitle(jobTitle);
 		jobRepository.save(job);
 	}
-	public List<Job> findByMaxSalaryLessThanEqual(BigDecimal maxSalary){
-		return jobRepository.findByMaxSalaryLessThanEqual(maxSalary);
+	public List<Job> findByMaxSalaryGreaterThanEqual(BigDecimal maxSalary){
+		return jobRepository.findByMaxSalaryGreaterThanEqualOrderByMaxSalary(maxSalary);
 		
 	}
 	public List<Job> findAll() {

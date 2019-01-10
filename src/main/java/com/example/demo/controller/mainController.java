@@ -98,7 +98,7 @@ public class mainController {
 	@RequestMapping(value = "/jobs", method = RequestMethod.POST)
 	public @ResponseBody JobRes jobs(@RequestBody SalaryQuery q) {
 		JobRes j =new JobRes();
-		List<JobDTO> jobsDTO = jobToDTO(jobService.findByMaxSalaryLessThanEqual(q.getMinSalary()));
+		List<JobDTO> jobsDTO = jobToDTO(jobService.findByMaxSalaryGreaterThanEqual(q.getMinSalary()));
 		j.setJobs(jobsDTO);
 		return j;
 	}

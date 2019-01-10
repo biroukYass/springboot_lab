@@ -44,10 +44,14 @@
 	        </tr>
         </table>
         
-        <form id="register" th:object="${modifyCountryQuery}">
-			<input  name="countryId" id="country_id" disabled="true"   placeholder="Country Id"> 
+                <div class="alert-danger text-center">Update your selected contry here :</div><br>
+        <form class="row" id="register" th:object="${modifyCountryQuery}">
+       		 <label for="country_id">ID :</label>
+			<input class="" name="countryId" id="country_id" disabled   placeholder="Country Id">
+			<label for="country_name">country name :</label>
 			<input type="text" name="countryIdOld" id="country_id_old"   hidden="true"> 
 			<input type="text" name="countryName" id="country_name"  placeholder="Country Name"> 
+			<label for="region_name">region name :</label>
 			<input type="text" name="regionName" id="region_name"  placeholder="Region Name"> 
 			<input type="submit" name="valider" value="Modify"> 
 		</form>
