@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.DTO.JobDTO;
-import com.example.demo.controller.responses.JobRes;
 import com.example.demo.model.Job;
 import com.example.demo.repository.JobRepository;
 
